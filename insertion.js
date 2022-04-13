@@ -1,21 +1,22 @@
 function insertionSort(arr) {
-  let min;
-  let idx;
-  for (let i = 0; i < arr.length - 1; i++) {
-    min = arr[i];
-    idx = i;
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i;
+
     for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < min) {
-        min = arr[j];
-        idx = j;
+      if (arr[lowest] > arr[j]) {
+        lowest = j;
       }
     }
-    if (idx !== i) {
-      arr[idx] = arr[i];
-      arr[i] = min;
-    }
+
+    if (i !== lowest) swap(arr, i, lowest);
   }
   return arr;
+}
+
+function swap(arr, i, j) {
+  let value = arr[i];
+  arr[i] = arr[j];
+  arr[j] = value;
 }
 
 console.log(insertionSort([4, 20, 12, 10, 7, 9]));
